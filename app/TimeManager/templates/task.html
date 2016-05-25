@@ -1,0 +1,72 @@
+{% extends "auth_base.html" %}
+{% load staticfiles %}
+{% load bootstrap %}
+
+{% block loadfiles %}
+<script src="/static/js/task.js"></script>
+{% endblock %}
+
+
+{% block title %} Home {% endblock %}
+{% block content %}
+<br> <br> <br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <h2 class="" align="center">Menu</h2>
+            <button type="button" id="task_form" class="btn btn-info btn-lg btn-block">
+                Create Tasks
+            </button>
+            <button type="button" class="btn btn-info btn-lg btn-block">
+                View Tasks
+            </button>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-6" id="info">
+            <form role="form" action="{% url 'task_form' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_name">Name:</label>
+                    <input type="text" class="form-control" id="id_name" name="name" maxlength="40">
+                </div>
+
+                <div class="form-group">
+                    <label for="id_descritpion">Description:</label>
+                    <textarea class="form-control" rows="5" id="id_description" maxlength="200" 
+                    name="description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_start_date">Start Date:</label>
+                    <input type="date" class="form-control" id="id_start_date" name="start_date">
+                </div>
+
+                <div class="form-group">
+                    <label for="id_end_date">End Date:</label>
+                    <input type="date" class="form-control" id="id_end_date" name="end_date">
+                </div>
+
+                <div class="form-group">
+                    <label for="id_priority">Priority:</label>
+                    <input type="number" class="form-control" min="1" max="10" id="id_priority" name="priority">
+                </div>
+
+                <div class="form-group">
+                    <label for="id_duration">Expected Duration:</label>
+                    <input type="number" class="form-control" min="1" max="10" id="id_duration" name="duration">
+                </div>
+
+                <div class="form-group">
+                    <select class="dropdown btn-default btn-lg btn-block" name="category">
+                      <option value="Time Manager">Time Manager</option>
+                      <option value="Job">Job</option>
+                      <option value="15210">15210</option>
+                      <option value="Excercise">Excercise</option>
+                    </select>
+                </div>
+                <input type="submit" class="btn-success btn-lg btn-block" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
